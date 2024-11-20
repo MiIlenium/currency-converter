@@ -5,20 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class Currency {
-    @JsonProperty("name")
-    String name;
+public class CurrencyDTO {
     @JsonProperty("symbol")
     String symbol;
+    @JsonProperty("name")
+    String name;
+    @JsonProperty("symbol_native")
+    String symbolNative;
     @JsonProperty("decimal_digits")
     long decimalDigits;
     @JsonProperty("rounding")
     long rounding;
-    @JsonProperty("countries")
-    List<String> countries;
+    @JsonProperty("code")
+    String code;
+    @JsonProperty("name_plural")
+    String namePlural;
+    @JsonProperty("value")
+    long value;
 }
