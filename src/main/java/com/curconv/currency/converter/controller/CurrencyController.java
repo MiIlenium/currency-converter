@@ -11,11 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrencyController {
     private final CurrencyProviderService currencyProviderService;
 
-    @GetMapping("/api/getSomething")
-    public Object sendRequest(){
-        return null;
-    }
-
     @GetMapping("/api/currency/{code}")
     public CurrencyDTO getInfoByCode(@PathVariable String code){
         return currencyProviderService.getCurrencyInfoByCountryCode(code);

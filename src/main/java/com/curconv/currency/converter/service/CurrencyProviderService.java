@@ -24,14 +24,12 @@ public class CurrencyProviderService {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private static final String allCurrenciesEndpoint = "/v3/currencies";
     private static final String getLatestCurrenciesEndpoint = "/v3/latest";
+
     public CurrencyDTO getCurrencyInfoByCountryCode(String countryCode) {
         CurrencyResponseDTO currencyResponseDTO;
         log.debug("Retrieving currency info for country code {}", countryCode);
         try {
-            currencyResponseDTO = objectMapper.readValue(
-                    (String) sendRequest(allCurrenciesEndpoint, HttpMethod.GET).getBody(),
-                    CurrencyResponseDTO.class
-            );
+            currencyResponseDTO = objectMapper.readValue(sendRequest(allCurrenciesEndpoint, HttpMethod.GET), CurrencyResponseDTO.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -43,10 +41,7 @@ public class CurrencyProviderService {
         CurrencyResponseDTO currencyResponseDTO;
         log.debug("Retrieving latest exchange rate for country code {}", countryCode);
         try {
-            currencyResponseDTO = objectMapper.readValue(
-                    (String) sendRequest(getLatestCurrenciesEndpoint, HttpMethod.GET).getBody(),
-                    CurrencyResponseDTO.class
-            );
+            currencyResponseDTO = objectMapper.readValue(sendRequest(getLatestCurrenciesEndpoint, HttpMethod.GET), CurrencyResponseDTO.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +49,7 @@ public class CurrencyProviderService {
         return currencyResponseDTO.getData().get(countryCode);
     }
 
-    private ResponseEntity sendRequest(String apiAddress, HttpMethod httpMethod) {
+    private String sendRequest(String apiAddress, HttpMethod httpMethod) {
         RestTemplate restTemplate = new RestTemplate();
         String baseUri = "https://api.currencyapi.com".concat(apiAddress);
         HttpHeaders headers = new HttpHeaders();
@@ -65,13 +60,7 @@ public class CurrencyProviderService {
         try {
             // Configure ObjectMapper to ignore unknown properties
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            // Perform the API call and map directly to a DTO
-            return restTemplate.exchange(
-                    baseUri,
-                    httpMethod,
-                    entity,
-                    String.class
-            );
+            return restTemplate.exchange(baseUri, httpMethod, entity, String.class).getBody();
         } catch (Exception e) {
             log.error("Error during API call", e);
             throw new RuntimeException("Error making API request", e);
