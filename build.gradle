@@ -28,8 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'org.springframework', name: 'spring-web'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
-
-
+	//implementation group: 'org.springframework.security', name: 'spring-security-config', version: '6.4.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
