@@ -16,13 +16,13 @@ public class CurrencyDTO {
     @JsonProperty("symbol_native")
     String symbolNative;
     @JsonProperty("decimal_digits")
-    long decimalDigits;
+    String decimalDigits;
     @JsonProperty("rounding")
-    long rounding;
+    String rounding;
     @JsonProperty("code")
     String code;
     @JsonProperty("name_plural")
     String namePlural;
     @JsonProperty("value")
-    long value;
+    double value;
 }

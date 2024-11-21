@@ -4,6 +4,7 @@ import com.curconv.currency.converter.service.CurrencyProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,5 +20,10 @@ public class CurrencyController {
     @GetMapping("/api/currency/exchange/{code}")
     public CurrencyDTO getExchangeInfoByCode(@PathVariable String code){
         return currencyProviderService.getLatestExchangeRateByCountryCode(code);
+    }
+
+    @GetMapping("/api/currency/exchange")
+    public CurrencyDTO getExchangeInfoByBaseCurrency(@RequestParam String baseCurrency, @RequestParam String convertToCurrency, @RequestParam double amountToConvert){
+        return currencyProviderService.changeCurrency(baseCurrency, convertToCurrency, amountToConvert);
     }
 }
