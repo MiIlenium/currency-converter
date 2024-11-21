@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,6 +25,10 @@ public class CurrencyDTO {
     String code;
     @JsonProperty("name_plural")
     String namePlural;
+    @JsonProperty("type")
+    String type;
+    @JsonProperty("countries")
+    List<String> countries;
     @JsonProperty("value")
     double value;
 }
