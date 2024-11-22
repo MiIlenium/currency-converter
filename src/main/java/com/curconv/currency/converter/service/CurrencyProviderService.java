@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -17,6 +18,7 @@ import java.util.Collections;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Validated
 public class CurrencyProviderService {
     @Value("${api.key}")
     private String apiKey;
