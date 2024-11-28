@@ -1,4 +1,4 @@
-package com.curconv.currency.converter.Security;
+package com.curconv.currency.converter.security;
 
 public class AppRegex {
     //Match to country code

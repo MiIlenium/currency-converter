@@ -1,6 +1,6 @@
 package com.curconv.currency.converter.controller;
 
-import com.curconv.currency.converter.Security.AppRegex;
+import com.curconv.currency.converter.security.AppRegex;
 import com.curconv.currency.converter.dto.CurrencyDTO;
 import com.curconv.currency.converter.service.CurrencyProviderService;
 import jakarta.validation.constraints.Pattern;

@@ -1,6 +1,6 @@
 package com.curconv.currency.converter.dto;
 
-import com.curconv.currency.converter.Security.AppRegex;
+import com.curconv.currency.converter.security.AppRegex;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Pattern;
