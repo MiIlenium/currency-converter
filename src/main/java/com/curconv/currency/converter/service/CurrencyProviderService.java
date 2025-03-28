@@ -14,6 +14,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * Service for providing currency data and performing currency-related operations, such as retrieving currency
+ * information, fetching exchange rates, and currency conversions.
+ *
+ * This service interacts with external APIs via the {@code RestApiCalls} interface to retrieve currency-related
+ * information. It performs various validations and computations to provide desired outcomes.
+ *
+ * The main features of this service include:
+ * - Fetching currency details by country code.
+ * - Retrieving the latest exchange rate for a specific currency.
+ * - Performing currency conversion between different currencies based on specified amounts and exchange rates.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +39,7 @@ public class CurrencyProviderService {
                                                     @Pattern(regexp = AppRegex.THREE_DIGITS_COUNTRY_CODE,
                                                             message = "Country code must be exactly 3 uppercase letters (e.g., 'USD', 'EUR').") String countryCode) {
         log.debug("Retrieving currency info for country code {}", countryCode);
-        CurrencyResponseDTO currencyResponseDTO = restApiCalls.getCurrency();
+        CurrencyResponseDTO currencyResponseDTO = restApiCalls.getCurrencies();
         return currencyResponseDTO.getData().get(countryCode);
     }
 

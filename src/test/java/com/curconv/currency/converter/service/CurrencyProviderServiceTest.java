@@ -27,8 +27,9 @@ class CurrencyProviderServiceTest {
     @InjectMocks
     private CurrencyProviderService currencyProviderService;
     CurrencyResponseDTO currencyResponseDTO;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         currencyResponseDTO = new CurrencyResponseDTO();
         Map<String, CurrencyDTO> data = new HashMap<>();
 
@@ -76,12 +77,12 @@ class CurrencyProviderServiceTest {
     }
 
     @Test
-    void amountEqualZero(){
+    void amountEqualZero() {
         assertThrows(WebException.class, () -> currencyProviderService.changeCurrency("USD", "EUR", 0.0));
     }
 
     @Test
-    void amountLessThanZero(){
+    void amountLessThanZero() {
         assertThrows(WebException.class, () -> currencyProviderService.changeCurrency("USD", "EUR", -2.0));
     }
 }
