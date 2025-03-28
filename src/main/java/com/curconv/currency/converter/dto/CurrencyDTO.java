@@ -26,8 +26,11 @@ public class CurrencyDTO {
     String decimalDigits;
     @JsonProperty("rounding")
     String rounding;
-    @JsonProperty("code")
-    @Pattern(regexp = AppRegex.THREE_DIGITS_COUNTRY_CODE)
+    //@JsonProperty("code")
+    @Pattern(
+            regexp = AppRegex.THREE_DIGITS_COUNTRY_CODE,
+            message = "Country code must be exactly 3 uppercase letters (e.g., 'USD', 'EUR')."
+    )
     String code;
     @JsonProperty("name_plural")
     String namePlural;
@@ -35,7 +38,9 @@ public class CurrencyDTO {
     String type;
     @JsonProperty("countries")
     @Nullable
-    List<@Pattern(regexp = AppRegex.TWO_DIGITS_COUNTRY_CODE) String> countries;
+    List<@Pattern(
+            regexp = AppRegex.TWO_DIGITS_COUNTRY_CODE,
+            message = "Country code must be exactly 2 uppercase letter (e.g., 'US', 'EU').") String> countries;
     @JsonProperty("value")
     double value;
 }
